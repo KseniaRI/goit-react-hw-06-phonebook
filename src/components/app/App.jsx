@@ -1,4 +1,6 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as phonebookActions from '../../redux/phonebookActions';
 import { nanoid } from 'nanoid';
 import { PageTitle } from '../page-title/PageTitle';
 import { PhonebookForm } from '../phonebook-form/PhonebokForm';
@@ -9,46 +11,37 @@ import { Container } from './App.styled';
  
 
 export const App = () => {
-
-  const [contacts, setContacts] = useState(JSON.parse(localStorage.getItem('contacts')) ?? [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ]);
-  const [filter, setFilter] = useState('');
+  const dispatch = useDispatch();
+  const filter = useSelector((state) => state.filter);
+  const items = useSelector((state) => state.items);
 
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts])
+    localStorage.setItem('contacts', JSON.stringify(items));
+  }, [items])
 
   const formSubmitHandler = ({ name, number }, { resetForm }) => {
-    const contactNames = contacts.map(contact => contact.name);
+    const contactNames = items.map(item => item.name);
 
     if (contactNames.includes(name)) {
       alert(`${name} is already in contacts`);
     } else {
       const newContact = { name, number, id: nanoid() };
-      setContacts(prevState => [...prevState, newContact]);
+      dispatch(phonebookActions.saveContact(newContact));
     }
     resetForm();
   }
   
-  const changeFilter = (evt) => setFilter(evt.target.value);
-  
   const visibleContacts = useMemo(() => {
-    return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
-  }, [filter, contacts]);
+    return items.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()));
+  }, [filter, items]);
 
-  const deleteContact = (evt) => setContacts(contacts.filter(contact => contact.id !== evt.target.id));
-  
     return (
     <Container>
       <PageTitle title="Phonebook" />
       <PhonebookForm onSubmit={formSubmitHandler} /> 
       <SectionTitle title="Contacts"/>
-      <Filter value={filter} onChange={changeFilter} />
-      <ContactList contacts={visibleContacts} deleteContact={deleteContact} />
+      <Filter value={filter} onChange={(evt) => dispatch(phonebookActions.changeFilter(evt.target.value))} />
+      <ContactList contacts={visibleContacts} deleteContact={(evt) => dispatch(phonebookActions.deleteContact(evt.target.id))} />
     </Container>
     )
 }
