@@ -1,13 +1,19 @@
-import { Contacts, Contact, DeleteButton, Tel } from './ContactList.styled';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import * as phonebookActions from '../../redux/phonebookActions';
+import { getVisibleContacts } from 'redux/phonebookSelectors';
+import { Contacts, Contact, DeleteButton, Tel } from './ContactList.styled';
 
-export const ContactList = ({ contacts, deleteContact }) => {
+export const ContactList = () => {
+    const contacts = useSelector(getVisibleContacts);
+    const dispatch = useDispatch();
+
     return (
         <Contacts>
             {contacts.map(({ id, name, number }) => {
                 return (
                         <Contact key={id}>{name}: <Tel>{number}</Tel>
-                            <DeleteButton id={id} type="button" onClick={deleteContact}>Delete</DeleteButton>
+                            <DeleteButton id={id} type="button" onClick={(evt) => dispatch(phonebookActions.deleteContact(evt.target.id))}>Delete</DeleteButton>
                         </Contact>
                 )
             }
