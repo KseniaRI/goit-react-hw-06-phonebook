@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { getFilter } from 'redux/phonebookSelectors';
 import * as phonebookActions from '../../redux/phonebookActions';
-// import PropTypes from 'prop-types';
 import { FilterTitle, FilterWrap, FilterInput } from './Filter.styled';
 
 const filterId = nanoid();

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 import { getItems } from 'redux/phonebookSelectors';
 import * as phonebookActions from '../../redux/phonebookActions';
 import { TextInput } from './TextInput';
@@ -45,4 +46,13 @@ export const PhonebookForm = () => {
     </Formik>
     </>
     )
+}
+
+PhonebookForm.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
+  })
+  )
 }
