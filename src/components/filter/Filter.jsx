@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { getFilter } from 'redux/phonebookSelectors';
 import * as phonebookActions from '../../redux/phonebookActions';
-import { FilterTitle, FilterWrap, FilterInput } from './Filter.styled';
+import { FilterTitle, FilterInput } from './Filter.styled';
+import { Box } from 'components/Box';
 
 const filterId = nanoid();
 
@@ -11,10 +12,13 @@ export const Filter = () => {
     const dispatch = useDispatch();
 
     return (
-        <FilterWrap>
+        <Box as="div"
+        display="flex"
+        flexDirection="column"
+        alignItems="center">
             <FilterTitle htmlFor={filterId}>Find Contacts by name</FilterTitle>
             <FilterInput type="text" value={value} onChange={(evt) => dispatch(phonebookActions.changeFilter(evt.target.value))} id={filterId} />
-        </FilterWrap>
+        </Box>
     );
 }
    

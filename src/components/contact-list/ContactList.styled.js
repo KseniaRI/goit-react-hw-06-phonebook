@@ -3,33 +3,37 @@ import styled from '@emotion/styled';
 export const Contacts = styled.ul`
 margin: 0 auto;
 align-items: center;
-width: 340px;
+width: ${p => p.theme.space[9]}px;
 `;
 
 export const Contact = styled.li`
 display: flex;
 justify-content:space-between;
-margin-bottom: 16px;
-font-size: 20px;
-font-weight: 500;
+align-items: center;
+margin-bottom: ${p => p.theme.space[4]}px;
+font-size: ${p => p.theme.fontSizes.m};
+font-weight: ${p => p.theme.fontWeights.bold};
 `;
 export const DeleteButton = styled.button`
-height: 28px;
-width: 60px;
-background-color: #fff;
-border-color: skyblue;
+height: ${p => p.theme.space[5]}px;
+width: ${p => p.theme.space[6]}px;
+background-color: ${p => p.theme.colors.white};
 cursor: pointer;
 outline: none;
-border-radius: 5px;
-color: #000;
+border: ${p => p.theme.borders.normal};
+border-radius: ${p => p.theme.radii.normal};
+border-color: ${p => p.theme.colors.accent};
+color: ${p => p.theme.colors.black};
 
 &:hover,
 &:focus{
     background-color: skyblue;
-    color: #fff;
+    color: ${p => p.theme.colors.white};
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+      0px 2px 1px 0px rgba(0, 0, 0, 0.2);
 }
 `;
 
 export const Tel = styled.span`
-font-weight: 400;
+font-weight: ${p => p.theme.fontWeights.normal};
 `;

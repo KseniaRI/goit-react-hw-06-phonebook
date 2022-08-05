@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 
 export const SecondaryTitle = styled.h2`
 text-align: center;
-font-size: 24px;
-font-weight: 500px;
-color: #000;
+font-size: ${p => p.theme.fontSizes.l};
+font-weight: ${p => p.theme.fontWeights.bold};
+color: ${p => p.theme.colors.title};
 text-transform: uppercase;
-margin-bottom: 20px;
+margin-bottom: ${p => p.theme.space[5]}px;
 `;

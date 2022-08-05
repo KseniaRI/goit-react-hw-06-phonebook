@@ -1,23 +1,20 @@
 import styled from '@emotion/styled';
 
 export const FilterTitle = styled.label`
-font-size: 20px;
-font-weight: 500;
-margin-bottom: 16px;
-color: #000;
+font-size: ${p => p.theme.fontSizes.m};
+font-weight: ${p => p.theme.fontWeights.bold};
+text-transform: uppercase;
+margin-bottom: ${p => p.theme.space[4]}px;
+color: ${p => p.theme.colors.black};
 `;
-export const FilterWrap = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-`;
+
 export const FilterInput = styled.input`
-width: 300px;
-height: 32px;
-margin-bottom: 28px;
+width: ${p => p.theme.space[8]}px;
+height: ${p => p.theme.space[5]}px;
+margin-bottom: ${p => p.theme.space[5]}px;
 
 &:hover,
 &:focus{
-    outline-color: skyblue;
+    outline-color: ${p => p.theme.colors.accent};
 }
 `;
