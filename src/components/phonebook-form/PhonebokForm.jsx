@@ -4,7 +4,10 @@ import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { getItems } from 'redux/phonebookSelectors';
-import * as phonebookActions from '../../redux/phonebookActions';
+
+// import * as phonebookActions from '../../redux/phonebookActions';
+import { itemsSlice } from 'redux/phonebookSlice';
+
 import { TextInput } from './TextInput';
 import { StyledForm, Button } from './PhonebookForm.styled';
 
@@ -33,7 +36,8 @@ export const PhonebookForm = () => {
             alert(`${name} is already in contacts`);
           } else {
             const newContact = { name, number };
-            dispatch(phonebookActions.saveContact(newContact));
+            // dispatch(phonebookActions.saveContact(newContact));
+            dispatch(itemsSlice.actions.saveContact(newContact));
           }
           resetForm();
   }}

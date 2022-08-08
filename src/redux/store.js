@@ -2,7 +2,8 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import phonebookReducer from './phonebookReducer';
+// import phonebookReducer from './phonebookReducer';
+import { phonebookReducer } from "./phonebookSlice";
 
 const middleware = [...getDefaultMiddleware({
     serializableCheck: {

@@ -25,7 +25,7 @@ border-color: ${p => p.theme.colors.accent};
 border-radius: ${p => p.theme.radii.normal};
 margin-bottom: ${p => p.theme.space[6]}px;
 box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-      0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+      0px 2px 1px 0px rgba(0, 0, 0, 0.2); 
 `;
 
 export const Label = styled.label`
@@ -34,7 +34,7 @@ color: ${p => p.theme.colors.black};
 font-weight: ${p => p.theme.fontWeights.bold};
 font-size: ${p => p.theme.fontSizes.m};
 
-&:not(:first-child){
+&:not(:first-of-type){
     margin-top: ${p => p.theme.space[5]}px;
 }
 `;
